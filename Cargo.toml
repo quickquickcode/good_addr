@@ -1,0 +1,13 @@
+[package]
+name = "good_addr"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+secp256k1 = { version = "0.29", features = ["rand", "global-context"] }
+tiny-keccak = { version = "2.0", features = ["keccak"] }
+hex = "0.4"
+rand = "0.8"
+rayon = "1.10"
+clap = { version = "4.5", features = ["derive"] }
+indicatif = "0.17"
