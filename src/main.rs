@@ -10,7 +10,7 @@ use std::time::{Duration, Instant};
 use tiny_keccak::{Hasher, Keccak};
 
 #[derive(Parser, Debug)]
-#[command(author, version, about = "以太坊靓号地址生成器", long_about = None)]
+#[command(author, version, about = "以太坊靓号地址生成器", long_about = "Hello this is a long about message.")]
 struct Args {
     /// 地址前缀（不包含 0x，不区分大小写）
     #[arg(short, long)]
@@ -104,11 +104,11 @@ fn generate_and_check(
     suffix: &Option<String>,
     case_sensitive: bool,
 ) -> Option<(String, String)> {
-    let secp = Secp256k1::new();
-    let mut rng = rand::thread_rng();
+    let secp = Secp256k1::new();        // 创建 Secp256k1 上下文
+    let mut rng = rand::thread_rng();   // 使用线程本地随机数生成器
 
     // 生成随机私钥
-    let mut secret_key_bytes = [0u8; 32];
+    let mut secret_key_bytes = [0u8; 32];   // 32字节私钥
     rng.fill(&mut secret_key_bytes);
 
     if let Ok(secret_key) = SecretKey::from_slice(&secret_key_bytes) {
@@ -270,6 +270,7 @@ fn format_number(n: u64) -> String {
 
 /// 格式化浮点数，添加千位分隔符
 fn format_float(n: f64) -> String {
+    // 获得整数部分和小数部分
     let integer_part = n as u64;
     let decimal_part = n - integer_part as f64;
     let formatted_integer = format_number(integer_part);

@@ -11,3 +11,8 @@ rand = "0.8"
 rayon = "1.10"
 clap = { version = "4.5", features = ["derive"] }
 indicatif = "0.17"
+ethers = { version = "2", default-features = false, features = ["rustls"] }
+
+[[bin]]
+name = "good_addr"
+path = "src/main.rs"
